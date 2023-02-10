@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactAutocomplete from 'react-autocomplete';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ReactAutocomplete
+      items={[
+        { id: 'foo', label: 'foo' },
+        { id: 'bar', label: 'bar' },
+        { id: 'baz', label: 'baz' },
+      ]}
+      shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+      getItemValue={item => item.label}
+      renderItem={(item, highlighted) =>
+        <div
+          key={item.id}
+          style={{ backgroundColor: highlighted ? '#eee' : 'transparent' }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          {item.label}
+        </div>
+      }
+      value={this.state.value}
+      onChange={e => this.setState({ value: e.target.value })}
+      onSelect={value => this.setState({ value })}
+    />
+  )
 }
+
 
 export default App;
