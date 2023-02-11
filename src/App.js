@@ -1,6 +1,9 @@
+import React, {useState} from 'react';
 import ReactAutocomplete from 'react-autocomplete';
 
 function App() {
+  const [value, setValue] = useState();
+
   return (
     <ReactAutocomplete
       items={[
@@ -18,8 +21,8 @@ function App() {
           {item.label}
         </div>
       }
-      value={this.state.value}
-      onChange={e => this.setState({ value: e.target.value })}
+      value={value}
+      onChange={e => setValue(e.target.value)}
       onSelect={value => this.setState({ value })}
     />
   )
